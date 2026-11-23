@@ -1,0 +1,6 @@
+[build]
+builder = "NIXPACKS"
+buildCommand = "go mod tidy && go build -o bin/shopify_checker ."
+
+[deploy]
+startCommand = "bin/shopify_checker"
