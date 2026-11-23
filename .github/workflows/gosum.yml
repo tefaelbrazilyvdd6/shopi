@@ -1,0 +1,17 @@
+name: Generate go.sum
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v4
+        with:
+          go-version: '1.21'
+      - run: go mod tidy
+      - run: |
+          git config user.email "bot@bot.com"
+          git config user.name "bot"
+          git add go.sum
+          git commit -m "add go.sum" || echo "nothing to commit"
+          git push
